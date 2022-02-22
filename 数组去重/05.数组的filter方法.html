@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // indexOf方法 如果数组有相同的元素则只返回第一次出现的索引号
+    // filter方法  遍历数组的每一项筛选满足条件的数组元素    返回一个新数组
+    var arr = [1, 1, 2, 2, 3, 4, 5]
+    function unique(arr) {
+      return arr.filter((item, index) => {
+        // //当前元素，在原始数组中的第一个索引==当前索引值，等于则返回当前元素
+        return arr.indexOf(item, 0) === index
+      })
+    }
+    console.log(unique(arr));
+
+    //        arr.indexOf(item)       ===    index
+    //        [1, 1, 2, 2, 3, 4, 5]           [1, 1, 2, 2, 3, 4, 5]
+    // 索引号   0  0  2  2  4  5  6             0  1  2  3  4  5  6
+    // 所以新数组的元素为 [1,2,3,4,5]
+  </script>
+</body>
+
+</html>

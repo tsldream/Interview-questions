@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var name = 222
+    var a = {
+      name: 111,
+      say: function () {
+        console.log(this.name);
+      }
+    }
+
+    var fun = a.say
+    fun()                 // 222  fun.call(window)
+    a.say()               // 111   a.say.call(a)
+
+    var b = {
+      name: 333,
+      say: function (fn) {
+        fn()      // 222  fn.call(window)=function() {console.log(this.name)}
+      }
+    }
+    b.say(a.say)  //
+    b.say = a.say
+    /* var b = {
+      name: 333,
+      say: function() {
+        console.log(this.name);
+      }
+    } */
+    b.say()    // b.say.call(b)
+  </script>
+</body>
+
+</html>

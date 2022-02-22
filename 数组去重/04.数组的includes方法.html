@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 数组的includes()方法判断某个数组是否包含给定的值，包含返回true 否则返回false
+    var arr = [1, 1, 2, 2, 3, 4, 4]
+    function unique(arr) {
+      var newarr = []
+      for (var i = 0; i < arr.length; i++) {
+        // 遍历arr数组的每一项 来作为includes()函数参数，判断newarr数组里面是否存在 不存在则添加
+        if (!newarr.includes(arr[i])) {
+          newarr.push(arr[i])
+        }
+      }
+      return newarr
+    }
+    console.log(unique(arr));  //  [1, 2, 3, 4]
+  </script>
+</body>
+
+</html>

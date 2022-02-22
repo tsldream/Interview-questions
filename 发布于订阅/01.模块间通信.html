@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">点击我</button>
+  <div id="div"></div>
+  <script src="./封装发布与订阅pubsub.js"></script>
+  <script>
+    /* var btn = document.getElementById('btn')
+    var div = document.getElementById('div')
+    var i = 0
+    btn.onclick = function () {
+      div.innerHTML = i++
+    } */
+    // 发布
+    var a = (function () {
+      var count = 0
+      var btn = document.getElementById('btn')
+      btn.onclick = function () {
+        Event.trigger('add', count++)
+      }
+    })()
+    // 订阅
+    var b = (function () {
+      var div = document.getElementById('div')
+      Event.listen('add', function (count) {
+        div.innerHTML = count
+      })
+    })()
+  </script>
+</body>
+
+</html>

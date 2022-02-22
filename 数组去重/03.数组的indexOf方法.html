@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //核心算法：遍历旧数组，然后拿着旧数组里面的每一项去查询新数组，如果该元素在新数组里面没有出现过，我们就添加否则不添加
+    //我们怎么知道该元素有没有存在？ 利用 新数组.indexOf（数组元素） 如果返回-1 就说明新数组里面没有该元素
+    var arr = [1, 2, 2, 3, 4, 4, 5, 5]
+    function unique(arr) {
+      var newarr = []
+      for (var i = 0; i < arr.length; i++) {
+        if (newarr.indexOf(arr[i]) === -1) {
+          newarr.push(arr[i])
+        }
+      }
+      return newarr
+    }
+    console.log(unique(arr));  // [1, 2, 3, 4, 5]
+  </script>
+</body>
+
+</html>

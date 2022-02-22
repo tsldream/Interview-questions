@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*   // 定义发布者
+      var shoeObj = {
+        // 有一个列表用来存放函数
+        list: [],
+        // 增加订阅者
+        listen: function (fn) {
+          this.list.push(fn)
+        },
+        // 发布消息
+        trigger: function () {
+          // 遍历这个数组 然后执行里面的函数
+          for (var i = 0, fn; fn = this.list[i++];) {
+            fn.apply(this, arguments)
+          }
+        }
+      }
+  
+      // 订阅消息
+      shoeObj.listen(function (color, size) {
+        console.log(color);
+        console.log(size);
+      })
+      shoeObj.listen(function (color, size) {
+        console.log(color);
+        console.log(size);
+      })
+  
+      // 发布消息
+      shoeObj.trigger('黑色', 27)
+      shoeObj.trigger('白色', 37) */
+
+
+
+    // 增加key用于区分  订阅者只收到自己订阅的消息不会收到其他的订阅消息
+    // 定义发布者
+    var shoeObj = {
+      // 有一个列表用来存放函数
+      list: [],
+      // 增加订阅者
+      listen: function (key, fn) {
+        if (!this.list[key]) {
+          this.list[key] = []
+        }
+        this.list[key].push(fn)
+      },
+      // 发布消息
+      trigger: function () {
+        // 取出这个key
+        // shift()  删除数组的第一个元素，并返回该元素。
+        var key = Array.prototype.shift.call(arguments)
+        // console.log(key);
+        var fns = this.list[key]
+        // console.log(fns);
+        if (!fns || fns.length == 0) {
+          return
+        }
+        // 遍历这个数组 然后执行里面的函数
+        for (var i = 0, fn; fn = fns[i++];) {
+          fn.apply(this, arguments)
+        }
+      }
+    }
+
+    shoeObj.listen('red', function (color, size) {
+      console.log(color);
+      console.log(size);
+    })
+    shoeObj.listen('hei', function (color, size) {
+      console.log(color);
+      console.log(size);
+    })
+
+    shoeObj.trigger('red', '黑色', 27)
+    shoeObj.trigger('hei', '白色', 37)
+  </script>
+</body>
+
+</html>

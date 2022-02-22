@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* var a = document.querySelectorAll('*')
+    // console.log(a instanceof Array);   false
+    a = Array.prototype.slice.apply(a) // 将伪数组转为真正的数组  a数组里面是DOM元素
+    // console.log(a instanceof Array);   true
+    // console.log(a);
+    a = a.map(item => {             // 将DOM元素转化为标签   map方法 item就是遍历每一项的DOM元素 然后将返回标签组成的新数组     
+      return item.tagName
+    })
+    // console.log(a);
+    a = new Set(a)     // 去重
+    // console.log(a);
+    a = Array.from(a)
+    console.log(a); */
+
+    // 简化为一行
+    a = [...new Set([...document.querySelectorAll('*')].map(item => item.tagName))]
+    console.log(a);
+  </script>
+</body>
+
+</html>

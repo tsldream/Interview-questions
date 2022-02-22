@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*     function printAnimalsDetails(animal) {
+          var result = null
+          if (animal) {
+            if (animal.type) {
+              if (animal.name) {
+                if (animal.gender) {
+                  return `${animal.name} is a ${animal.gender} - ${animal.type}`
+                } else {
+                  result = 'no animal gender'
+                }
+              } else {
+                result = 'no animal name'
+              }
+            } else {
+              result = 'no animal type'
+            }
+          } else {
+            result = 'no animal'
+          }
+          return result
+        } */
+
+
+    // 提前退出和提前返回
+    const printAnimalsDetails = (animal) => {
+      if (!animal) return 'no animal'
+      if (!animal.type) return 'no animal type'
+      if (!animal.name) return 'no animal name'
+      if (!animal.gender) return 'no animal gender'
+      return `${animal.name} is a ${animal.gender} - ${animaltype}`
+    }
+
+    console.log(printAnimalsDetails());
+    console.log(printAnimalsDetails({ type: 'dog' }));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      width: 300px;
+      display: flex;
+      border: 1px solid #000;
+    }
+
+    li {
+      width: 200px;
+      height: 40px;
+      line-height: 40px;
+      list-style: none;
+      border-right: 1px solid #000;
+      text-align: center;
+    }
+
+    li:last-child {
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <script>
+    // 需求 点击li获取里面的文字
+    var ul = document.getElementsByTagName('ul')[0]
+    // 利用事件委托 点击ul的时候就知道具体点击的是哪个li
+    // console.log(ul);
+    ul.onclick = function (e) {
+      // console.log(e);
+      //e.target 代表我们我们触发事件的对象 即点击了ul实际上是点击了ul里面的那个li
+      console.log(e.target.innerText);
+    }
+
+    // 给每一个li都绑定了一个事件 三次
+    /* [].slice.apply(ul.children).forEach(element => {
+      element.onclick = function () {
+        console.log(element.innerText);
+      }
+    }); */
+  </script>
+</body>
+
+</html>

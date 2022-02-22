@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*   作为对象属性时，用以下三种方式书写
+        let s = Symbol()
+        console.log(typeof (s));  //symbol
+    
+        // 1
+         let a = {}
+         a[s] = 'hellol'
+    
+        // 2
+        let a = {
+          [s]: 'hello'
+        }
+    
+        console.log(a[s]); // hello
+    
+        // 3
+         let a = {}
+         Object.defineProperty(a, s, { value: 'hello' }) */
+
+    /*  对象属性的遍历
+       var person = {
+       name: '小米',
+       age: 12,
+       [Symbol('level')]: 'A'
+     }
+     for (var i in person) {
+       console.log(i);   // name age
+     }
+     // 并不具备迭代器的接口 Symbol,iterator
+     // for (var i of person) {
+     //   console.log(i);
+     // }
+     console.log(Object.keys(person));  //['name', 'age']
+     console.log(Object.getOwnPropertySymbols(person));  //[Symbol(level)]
+     console.log(Object.getOwnPropertyNames(person));  //['name', 'age']
+     console.log(Reflect.ownKeys(person)); //['name', 'age', Symbol(level)] */
+
+    // 实际应用
+    // 当对象中属性值相同时可能出现问题
+    /*  var game = {
+       pg: '控球后卫',
+       sg: '控球后卫',
+       pf: '小前锋',
+     } */
+
+    // 当对象中要确保属性值不同时可以使用Symbol()作为属性值 具有唯一性
+    /*   var game = {
+        pg: Symbol('pg'),
+        sg: Symbol('sg'),
+        pf: Symbol('sf')
+      }
+  
+      function role() {
+        if (type === game.pg) {
+          console.log('控球后卫');
+        } else if (type === game.sg) {
+          console.log('得分后卫');
+        } else if (type === game.pf) {
+          console.log('小前锋');
+        }
+  
+        if (type === game.sg) {
+          console.log('得分后卫');
+        }
+      }
+      role(game.pg)
+*/
+    
+
+  </script>
+</body>
+
+</html>

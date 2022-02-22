@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // Set数据结构可以去重 Set数据结构的值时唯一的
+    var arr = [1, 1, 2, 2, 3, 3, 4]
+    // var arr = [1, 1, 2, 2, 3, 3, 4, { name: 'zhangs' }, { name: 'zhangs' }, { name: 'lisi' }]
+    // console.log(new Set(arr));   // Set(4) {1, 2, 3, 4}
+
+    // 1 利用Array.from() 方法将去重后的Set数据结构这个伪数组转化为真正的数组
+    // console.log(Array.from(new Set(arr)));  // [1, 2, 3, 4]
+
+    // 2 利用展开运算符
+    console.log([...new Set(arr)]);   // [1, 2, 3, 4]
+    // Set只能去除简单数据类型的
+    // console.log([...new Set(arr)]);   // [1, 2, 3, 4, { name: 'zhangs' }, { name: 'zhangs' }, { name: 'lisi' }]
+  </script>
+</body>
+
+</html>

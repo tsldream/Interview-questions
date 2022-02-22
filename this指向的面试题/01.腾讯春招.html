@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var x = 0
+    var obj = {
+      x: 3,
+      p: () => {
+        console.log(this.x, 'b');   //箭头函数没有this，这里的this指向window  x=0
+      }
+    }
+    function Fn() {
+      this.a = 1
+      this.b = {
+        x: 1,
+        p: function (callback) {
+          this.c = this.x + 1            // this.c=2
+          console.log(this.c);
+          console.log(this.x, 'a');     // 这里的this指向function的调用者  fn.b  this.x=1
+          obj.p.apply(this)             // apply调用该函数同时改变this的指向
+          callback()                     // 这里相当于window.callback()  this指向window的this
+        }
+      }
+    }
+    var fn = new Fn()
+    fn.b.p(function () {
+      console.log(this.x, 'c');          // this.x = 0
+    })
+
+    /* 2
+       1 'a'
+       0 'b'
+       0 'c' */
+
+    function myFunction() {
+      fn.b.p(() => {
+        console.log(this.x, 'd');    // 这里的箭头函数的this指向myFunction()函数的调用者obj  this.x=3
+      })
+    }
+    obj.fn = myFunction
+    obj.fn()
+
+    /* 2
+      1 'a'
+      0 'b'
+      3 'd' */
+  </script>
+</body>
+
+</html>

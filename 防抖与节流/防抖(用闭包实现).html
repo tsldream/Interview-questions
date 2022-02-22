@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" name="" id="input">
+
+  <script>
+    /*   var input = document.getElementById('input')
+      let timer
+      // 防抖的函数
+      function debounce(delay, value) {
+        // let timer
+        // console.log(timer);
+        clearTimeout(timer)
+        timer = setTimeout(function () {
+          console.log(value);
+        }, delay)
+      }
+      input.addEventListener('keyup', function (e) {
+        debounce(1000, e.target.value)
+      }) */
+
+    //用闭包实现
+    var input = document.getElementById('input')
+    // 防抖的函数
+    function debounce(delay, callback) {
+      let timer
+      // console.log(timer);
+      return function (value) {
+        // console.log(timer);
+        clearTimeout(timer)
+        timer = setTimeout(function () {
+          // console.log(value);   // 让这个结果不在这里输出，在外面输出
+          callback(value)
+        }, delay)
+      }
+    }
+
+    function fn(value) {
+      console.log(value);
+    }
+    // 只有第一次调用debounce(1000)函数的时候才会执行let timer  后面就直接把debounce(1000)函数的返回值赋值给了debounceFunc  不会再执行let timer了
+    // 相当于第一次调用debounceFunc(e.target.value)函数，相当于调用了debounce(delay) 接收的返回值为一个函数 赋值给debounceFunc  后面调用debounceFunc(e.target.value)函数就直接调用返回的那个函数了
+    var debounceFunc = debounce(1000, fn)
+    input.addEventListener('keyup', function (e) {
+      debounceFunc(e.target.value)
+    })
+  </script>
+</body>
+
+</html>

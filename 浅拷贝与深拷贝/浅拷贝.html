@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var num = 123
+    var person = { name: '乔丹', hobby: ['篮球', '橄榄球'] }
+
+    // 赋值与浅拷贝的区别
+    // 赋值  复制的是地址的引用 
+    /* var person1 = person
+    person1.name = '科比'
+    console.log(person.name);   //科比
+    console.log(person1.name);  // 科比 */
+
+    // 浅拷贝
+    // 1 创建了一个新的对象
+    // 2 拷贝值 （如果属性值是一般数据类型拷贝的就是基本数据类型的值 如果是引用数据类型拷贝的就是 内存的地址（引用））
+    // 浅拷贝如果碰到的是引用数据类型 那么拷贝前和拷贝后是相互影响的
+    function shallowClone(source) {
+      var newObj = {}
+      for (var i in source) {
+        // hasOwnProperty(propertyName)方法 是用来检测属性是否为对象的自有属性，如果是，返回true，否者false; 参数propertyName指要检测的属性名；
+        if (source.hasOwnProperty(i)) {
+          newObj[i] = source[i]
+        }
+      }
+      return newObj
+    }
+    var person1 = shallowClone(person)
+    /*  person1.name = '科比'
+     console.log(person.name);   // 乔丹
+     console.log(person1.name);  // 科比 */
+    person1.hobby[1] = '冰球'
+    console.log(person.hobby[1]);   // 冰球
+    console.log(person1.hobby[1]);   // 冰球
+
+    // 深拷贝
+    // 如果属性是引用数据类型，那么会新开辟一个地址
+  </script>
+</body>
+
+</html>
